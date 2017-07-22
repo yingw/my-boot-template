@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><!--?-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+
+    <!--/*@thymesVar id="title" type="java.lang.String"*/-->
+    <!--<title th:text="${title}">My Boot</title>-->
+    <title layout:title-pattern="$CONTENT_TITLE"></title>
+
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="../static/plugins/bootstrap/css/bootstrap.min.css"/>
+</head>
+
+<body>
+
+<h1>Layout</h1>
+
+<div layout:fragment="header">
+    <h1>header from Layout</h1>
+</div>
+
+<div layout:fragment="content">
+    Content from Layout
+</div>
+
+<div layout:fragment="customScript">
+    <!-- insert 用户定制的JavaScript -->
+</div>
+
+</body>
+</html>
+

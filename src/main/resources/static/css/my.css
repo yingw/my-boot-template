@@ -1,0 +1,9 @@
+/* Validation */
+label.error {
+    color: #d73925;
+    display: inline-block;
+    margin-left: 5px;
+}
+.form-control.error {
+    border: 1px dotted #d73925;
+}

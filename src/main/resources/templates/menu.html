@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><!--?-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="../static/plugins/bootstrap/css/bootstrap.min.css" th:href="@{/plugins/bootstrap/css/bootstrap.min.css}"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../static/plugins/font-awesome/css/font-awesome.min.css" th:href="@{/plugins/font-awesome/css/font-awesome.min.css}"/>
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../static/plugins/Ionicons/css/ionicons.min.css" th:href="@{/plugins/Ionicons/css/ionicons.min.css}"/>
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../static/css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}"/>
+    <!-- AdminLTE Skins. 选择一个skin指定，或者all选择 -->
+    <link rel="stylesheet" href="../static/css/skins/skin-black-light.min.css"/>
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.cnpmjs.org/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
+</head>
+
+<body class="hold-transition skin-black-light sidebar-mini">
+
+<div class="wrapper">
+
+    <header class="main-header"></header>
+
+    <!-- 左侧栏，Left side column. contains the sidebar -->
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <!-- 菜单 -->
+            <ul class="sidebar-menu" data-widget="tree" th:fragment="menu">
+                <li class="header">导航</li>
+
+                <li class="active">
+                    <a href="index.html" th:href="@{/}"><i class="fa fa-home"></i> <span>首页</span></a>
+                </li>
+
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-user"></i> <span>权限中心</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu"><!--collapse-->
+                        <li class="active"><a href="users/userList.html" th:href="@{/users}"><i class="fa fa-circle"></i> 用户管理</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> 角色管理</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> 资源管理</a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-gear"></i> <span>管理工具</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#" th:href="@{/h2-console}" target="_blank">
+                            <i class="fa fa-database"></i><span>H2 Console</span>
+                            <span class="pull-right-container"><i class="fa fa-external-link"></i></span>
+                        </a></li>
+                        <li><a href="#" th:href="@{/docs}" target="_blank">
+                            <i class="fa fa-file-text-o"></i> <span>Actuator Docs</span>
+                            <span class="pull-right-container"><i class="fa fa-external-link"></i></span>
+                        </a></li>
+                        <li><a href="#" th:href="@{/actuator}" target="_blank">
+                            <i class="fa fa-book"></i> <span>HAL Browser</span>
+                            <span class="pull-right-container"><i class="fa fa-external-link"></i></span>
+                        </a></li>
+                        <li><a href="#" th:href="@{/admin}" target="_blank">
+                            <i class="fa fa-sliders"></i> <span>Boot Admin</span>
+                            <span class="pull-right-container"><i class="fa fa-external-link"></i></span>
+                        </a></li>
+                        <li><a href="#" th:href="@{/druid}" target="_blank">
+                            <i class="fa fa-sliders"></i> <span>Druid</span>
+                            <span class="pull-right-container"><i class="fa fa-external-link"></i></span>
+                        </a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </section>
+    </aside>
+
+    <div class="content-wrapper">
+    </div>
+
+</div>
+
+<!-- jQuery 3 -->
+<script src="../static/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../static/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+
+<!-- SlimScroll -->
+<script src="../static/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../static/plugins/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../static/js/adminlte.min.js"></script>
+
+</body>
+
+</html>

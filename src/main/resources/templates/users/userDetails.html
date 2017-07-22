@@ -3,6 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout">
 
+<!--/*@thymesVar id="user" type="cn.yinguowei.boot.User"*/-->
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><!--?-->
@@ -274,7 +275,7 @@
         /*<![CDATA[*/
         function disableUser(id) {
             $.ajax({
-                url: "http://localhost:8080/users/" + id + "/disable",
+                url: "./" + id + "/disable",
                 type: "PUT",
                 async: false,
                 data: {},
@@ -288,7 +289,7 @@
         }
         function enableUser(id) {
             $.ajax({
-                url: "http://localhost:8080/users/" + id + "/enable",
+                url: "./" + id + "/enable",
                 type: "PUT",
                 async: false,
                 data: {},

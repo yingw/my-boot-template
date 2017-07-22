@@ -62,3 +62,8 @@ spring.datasource.druid.StatViewServlet.loginPassword=druid
 
 - Spring Boot Admin [http://localhost:8080/admin](http://localhost:8080/admin)
 - HAL Browser [http://localhost:8080/actuator](http://localhost:8080/actuator)
+
+## 系统截图
+
+![image](http://note.youdao.com/yws/public/resource/86cc310f1857fe0e7059989fd25bf399/xmlnote/BA57B2641304400796C577E691407145/10850)
+![image](http://note.youdao.com/yws/public/resource/86cc310f1857fe0e7059989fd25bf399/xmlnote/FA31D92C0F43498BBF7DBFCE8393CB12/10851)

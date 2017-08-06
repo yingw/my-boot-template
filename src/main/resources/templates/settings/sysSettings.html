@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout" th:with="menu='settings', submenu='syssettings'">
+<head>
+    <meta charset="utf-8" th:remove="all"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" th:remove="all"/><!--?-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" th:remove="all"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"
+          th:remove="all"/>
+    <link rel="stylesheet" href="../../static/plugins/bootstrap/css/bootstrap.min.css" th:remove="all"/>
+    <link rel="stylesheet" href="../../static/plugins/font-awesome/css/font-awesome.min.css" th:remove="all"/>
+    <link rel="stylesheet" href="../../static/css/AdminLTE.min.css" th:remove="all"/>
+    <link rel="stylesheet" href="../../static/css/skins/skin-black-light.min.css" th:remove="all"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.cnpmjs.org/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"
+          th:remove="all"/>
+    <link rel="stylesheet" href="../../static/css/my.css" th:remove="all"/>
+    <title>系统设置</title>
+</head>
+
+<body class="hold-transition skin-black-light sidebar-mini">
+
+<div class="wrapper">
+
+    <header class="main-header">
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="icon-bar"><i class="fa fa-fw fa-balance-scale"></i></span>
+            </a>
+        </nav>
+    </header>
+
+
+    <!-- 左侧栏，Left side column. contains the sidebar -->
+    <aside class="main-sidebar"></aside>
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+
+        <section class="content-header" layout:fragment="content-header">
+            <h1>系统设置
+                <small>系统设置</small>
+            </h1>
+
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li><a href="#">设置</a></li>
+                <li class="active">系统设置</li>
+            </ol>
+        </section>
+
+        <section class="content" layout:fragment="content">
+
+            <div class="box">
+
+                <div class="box-header with-border">
+                    <h3 class="box-title">系统设置</h3>
+                    <div class="box-tools pull-right">
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    BODY
+                </div>
+
+                <div class="box-footer">
+                    test
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="main-footer">footer</footer>
+</div>
+</body>
+
+<!-- jQuery 3 -->
+<script src="../../static/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../../static/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- AdminLTE App -->
+<script src="../../static/js/adminlte.min.js"></script>
+
+<div layout:fragment="customScript">
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        /*]]>*/
+    </script>
+
+</div>
+
+</html>

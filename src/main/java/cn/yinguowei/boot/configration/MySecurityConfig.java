@@ -6,7 +6,11 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.stereotype.Component;
+
+import javax.sql.DataSource;
 
 /**
  * Created by yingu on 2017/7/12.
@@ -19,12 +23,14 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 //        super.configure(http);
         System.out.println("MySecurityConfig.configure");
         http.authorizeRequests().antMatchers("/", "/login", "/register").permitAll();
-        http.authorizeRequests().antMatchers("/h2-console/**", "/docs/**", "/actuator/**", "/admin/**", "/druid/**").permitAll();
+        http.authorizeRequests().antMatchers("/h2-console/**", "/docs/**", "/actuator/**", "/management/**", "/admin/**", "/druid/**").permitAll();
         http.authorizeRequests().antMatchers("/css/**", "/img/**", "/js/**", "/plugins/**", "/static/**").permitAll();
 //        http.authorizeRequests().anyRequest().permitAll();
+        http.authorizeRequests().antMatchers("/settings/**").hasRole("admin");
         http.authorizeRequests().anyRequest().authenticated();
         http.formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll().and().logout().invalidateHttpSession(true).logoutSuccessUrl("/login").permitAll();
         http.csrf().disable();
+        http.rememberMe().tokenValiditySeconds(24*3600).tokenRepository(persistentTokenRepository());
         http.headers().frameOptions().disable();
     }
 
@@ -34,6 +40,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailService).passwordEncoder(myPasswordEncoder());
+        auth.eraseCredentials(false);
 //        myPasswordEncoder().encodePassword()
         System.out.println("MySecurityConfig.configureGlobal");
         System.out.println("encoding... \"admin\" -> " + myPasswordEncoder().encodePassword("admin", passwordEncoderSalt));
@@ -57,6 +64,24 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
+    @Autowired
+    DataSource dataSource;
+
+/*    @Bean
+    public DataSource getDataSource() {
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
+        dataSource.setUrl(env.getProperty("jdbc.url"));
+        dataSource.setUsername(env.getProperty("jdbc.username"));
+        dataSource.setPassword(env.getProperty("jdbc.password"));
+        return dataSource;
+    }*/
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+        tokenRepository.setDataSource(dataSource);
+        return tokenRepository;
+    }
 /*    @Bean
     public MyUserDetailService myUserDetailService() {
         return new MyUserDetailService();

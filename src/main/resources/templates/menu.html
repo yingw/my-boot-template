@@ -8,11 +8,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><!--?-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="../static/plugins/bootstrap/css/bootstrap.min.css" th:href="@{/plugins/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="../static/plugins/bootstrap/css/bootstrap.min.css"
+          th:href="@{/plugins/bootstrap/css/bootstrap.min.css}"/>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../static/plugins/font-awesome/css/font-awesome.min.css" th:href="@{/plugins/font-awesome/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" href="../static/plugins/font-awesome/css/font-awesome.min.css"
+          th:href="@{/plugins/font-awesome/css/font-awesome.min.css}"/>
     <!-- Ionicons -->
-    <link rel="stylesheet" href="../static/plugins/Ionicons/css/ionicons.min.css" th:href="@{/plugins/Ionicons/css/ionicons.min.css}"/>
+    <link rel="stylesheet" href="../static/plugins/Ionicons/css/ionicons.min.css"
+          th:href="@{/plugins/Ionicons/css/ionicons.min.css}"/>
 
     <!-- Theme style -->
     <link rel="stylesheet" href="../static/css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}"/>
@@ -36,24 +39,45 @@
             <ul class="sidebar-menu" data-widget="tree" th:fragment="menu">
                 <li class="header">导航</li>
 
+                <!-- 首页 -->
                 <li th:classappend="${menu=='index' ? 'active' : ''}">
                     <a href="index.html" th:href="@{/}"><i class="fa fa-home"></i> <span>首页</span></a>
                 </li>
-
-                <li class="treeview" th:classappend="${menu=='users' ? 'active menu-open' : ''}">
+                <!-- 权限管理 -->
+                <li class="treeview" th:classappend="${menu=='entities' ? 'active menu-open' : ''}">
                     <a href="#"><i class="fa fa-user"></i> <span>权限中心</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu"><!--collapse-->
-                        <li th:classappend="${menu=='users' ? 'active' : ''}"><a href="users/userList.html" th:href="@{/users}">
-                            <i th:classappend="${menu=='users' ? 'fa-circle' : 'fa-circle-o'}" class="fa"></i> 用户管理</a></li>
+                        <li th:classappend="${submenu=='users' ? 'active' : ''}">
+                            <a href="users/userList.html" th:href="@{/users}">
+                            <i th:classappend="${submenu=='users' ? 'fa-circle' : 'fa-circle-o'}" class="fa"></i> 用户管理</a>
+                        </li>
                         <li><a href="#"><i class="fa fa-circle-o"></i> 角色管理</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i> 资源管理</a></li>
                     </ul>
                 </li>
-
+                <!-- 系统设置 for admin -->
+                <li class="treeview" th:if="${#authorization.expression('hasRole(''ROLE_admin'')')}" th:classappend="${menu=='settings' ? 'active menu-open' : ''}">
+                    <a href="#"><i class="fa fa-adjust"></i> <span>设置</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li th:classappend="${submenu=='syssettings' ? 'active' : ''}">
+                            <a href="settings/sysSettings.html" th:href="@{/settings/sys}">
+                                <i class="fa fa-wrench"></i><span>系统设置</span>
+                            </a></li>
+                        <li th:classappend="${submenu=='charts' ? 'active' : ''}">
+                            <a href="settings/sysSettings.html" th:href="@{/settings/sys}">
+                                <i class="fa fa-pie-chart"></i><span>系统统计</span>
+                            </a></li>
+                    </ul>
+                </li>
+                <!-- 管理工具 -->
                 <li class="treeview">
                     <a href="#"><i class="fa fa-gear"></i> <span>管理工具</span>
                         <span class="pull-right-container">
@@ -73,7 +97,7 @@
                             <i class="fa fa-file-text-o"></i> <span>Swagger Docs</span>
                             <span class="pull-right-container"><i class="fa fa-external-link"></i></span>
                         </a></li>
-                        <li><a href="#" th:href="@{/actuator}" target="_blank">
+                        <li><a href="#" th:href="@{/management}" target="_blank">
                             <i class="fa fa-book"></i> <span>HAL Browser</span>
                             <span class="pull-right-container"><i class="fa fa-external-link"></i></span>
                         </a></li>

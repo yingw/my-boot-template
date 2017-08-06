@@ -1,161 +1,70 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout">
+      layout:decorator="layout" th:with="menu='users'">
 
-<!--/*@thymesVar id="user" type="cn.yinguowei.boot.User"*/-->
+<!--/*@thymesVar id="user" type="cn.yinguowei.boot.model.User"*/-->
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><!--?-->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
-
-    <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="../../static/plugins/bootstrap/css/bootstrap.min.css"
-          th:href="@{/plugins/bootstrap/css/bootstrap.min.css}"/>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../static/plugins/font-awesome/css/font-awesome.min.css"
-          th:href="@{/plugins/font-awesome/css/font-awesome.min.css}"/>
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="../../static/plugins/Ionicons/css/ionicons.min.css"
-          th:href="@{/plugins/Ionicons/css/ionicons.min.css}"/>
-
-    <!-- Theme style -->
-    <link rel="stylesheet" href="../../static/css/AdminLTE.min.css"
-          th:href="@{/css/AdminLTE.min.css}"/>
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="../../static/css/skins/skin-black-light.min.css"
-          th:href="@{/css/skins/skin-black-light.min.css}"/>
-    <!-- Google Font -->
+    <meta charset="utf-8" th:remove="all"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" th:remove="all"/><!--?-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" th:remove="all"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"
+          th:remove="all"/>
+    <link rel="stylesheet" href="../../static/plugins/bootstrap/css/bootstrap.min.css" th:remove="all"/>
+    <link rel="stylesheet" href="../../static/plugins/font-awesome/css/font-awesome.min.css" th:remove="all"/>
+    <link rel="stylesheet" href="../../static/plugins/Ionicons/css/ionicons.min.css" th:remove="all"/>
+    <link rel="stylesheet" href="../../static/css/AdminLTE.min.css" th:remove="all"/>
+    <link rel="stylesheet" href="../../static/css/skins/_all-skins.min.css" th:remove="all"/>
     <link rel="stylesheet"
-          href="https://fonts.googleapis.cnpmjs.org/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
-
+          href="https://fonts.googleapis.cnpmjs.org/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"
+          th:remove="all"/>
+    <link rel="stylesheet" href="../../static/css/my.css" th:remove="all"/>
     <title th:text="${user['new']} ? '新增用户' : '编辑用户'">新增/编辑用户</title>
 </head>
 
+<body class="hold-transition skin-blue sidebar-mini">
 
-<body class="hold-transition skin-black-light sidebar-mini">
 
 <div class="wrapper">
 
     <header class="main-header">
-        <!-- Logo -->
-        <a href="/" class="logo">
-            <span class="logo-mini"><b>M</b>B</span>
-            <span class="logo-lg"><b>My</b> Boot</span>
-        </a>
+
+        <a href="/" class="logo">Logo</a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
             <!-- Sidebar toggle button-->
             <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"><i class="fa fa-fw fa-balance-scale"></i></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
             </a>
-
-            <div class="navbar-custom-menu">
-                <ul class="nav navbar-nav">
-                    <li><!--样式？-->
-                        <span class="navbar-text">欢迎使用 My Boot</span>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            孙悟空 <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">个人中心</a></li>
-                            <li class="divider"></li>
-                            <li><a href="../login2.html">注销</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
         </nav>
     </header>
 
 
     <!-- 左侧栏，Left side column. contains the sidebar -->
     <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-            <!-- Sidebar user panel -->
-            <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="../../static/img/yingw-github-avatars-160x160.jpg"
-                         th:src="@{/img/yingw-github-avatars-160x160.jpg/}"
-                         class="img-circle" alt="User Image"/>
-                </div>
-                <div class="pull-left info">
-                    <p>孙悟空</p>
-                    <a href="#"><i class="fa fa-user"></i> 管理员</a>
-                </div>
-            </div>
-            <!-- search form -->
-            <form action="#" method="get" class="sidebar-form">
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="搜索…"/>
-                    <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-                </div>
-            </form>
-            <!-- /.search form -->
-            <!-- 菜单 sidebar menu: : style can be found in sidebar.less -->
-            <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">导航</li>
 
-                <li class="active">
-                    <a href="../index.html"><i class="fa fa-home"></i> <span>首页</span></a>
-                </li>
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">导航</li>
 
-                <li class="treeview menu-open">
-                    <a href="#"><i class="fa fa-user"></i> <span>权限中心</span>
-                        <span class="pull-right-container">
+            <li class="active">
+                <a href="../index.html"><i class="fa fa-home"></i> <span>首页</span></a>
+            </li>
+
+            <li class="treeview active menu-open">
+                <a href="#"><i class="fa fa-user"></i> <span>权限中心</span>
+                    <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
-                    </a>
-                    <ul class="treeview-menu menu-open" style="display:block"><!--collapse-->
-                        <li class="active"><a href="userList.html"><i class="fa fa-circle"></i> 用户管理</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> 角色管理</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> 资源管理</a></li>
-                    </ul>
-                </li>
-
-
-                <li class="treeview">
-                    <a href="#"><i class="fa fa-gear"></i> <span>管理工具</span>
-                        <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="#" target="_blank">
-                            <i class="fa fa-database"></i><span>H2 Console</span>
-                            <span class="pull-right-container"><i class="fa fa-external-link"></i></span>
-                        </a></li>
-                        <li><a href="#" target="_blank">
-                            <i class="fa fa-file-text-o"></i> <span>Actuator Docs</span>
-                            <span class="pull-right-container"><i class="fa fa-external-link"></i></span>
-                        </a></li>
-                        <li><a href="#" target="_blank">
-                            <i class="fa fa-book"></i> <span>HAL Browser</span>
-                            <span class="pull-right-container"><i class="fa fa-external-link"></i></span>
-                        </a></li>
-                        <li><a href="#" target="_blank">
-                            <i class="fa fa-sliders"></i> <span>Boot Admin</span>
-                            <span class="pull-right-container"><i class="fa fa-external-link"></i></span>
-                        </a></li>
-                    </ul>
-                </li>
-
-            </ul>
-        </section>
-        <!-- /.sidebar -->
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="userList.html"><i class="fa fa-circle"></i> 用户管理</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i> 角色管理</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i> 资源管理</a></li>
+                </ul>
+            </li>
+        </ul>
     </aside>
-
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -190,17 +99,17 @@
 
 
                 <form th:object="${user}" method="post" id="user-form"
-                      action="./userDetails.html" th:action="${user['new']} ? '/users/new' : '/users/edit/'+${user.id}"
+                      action="./userDetails.html" th:action="${user['new']} ? '/users/new' : '/users/'+${user.id}+'/edit'"
                       class="form-horizontal">
 
                     <div class="box-body">
-
+<div class="col-sm-10 col-sm-push-1">
                         <input type="hidden" name="_method" value="put" th:if="${!user['new']}"/>
                         <fieldset class="form-horizontal">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">账户名：</label>
+                                <label class="col-sm-2 control-label">账户名11：</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="username" th:value="*{username}" class="form-control"
+                                    <input type="text" name="username" th:field="*{username}" class="form-control"
                                            placeholder="输入用户的账户名称" required="required"/>
                                     <!--
                                                                     <span class="help-inline" th:error="*{username}">[error]</span>
@@ -210,7 +119,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">姓名：</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="fullname" class="form-control" th:value="*{fullname}"
+                                    <input type="text" name="fullname" class="form-control" th:field="*{fullname}"
                                            placeholder="输入用户的姓氏" required="required"/>
                                 </div>
                             </div>
@@ -266,7 +175,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">启用：</label>
                                 <div class="col-sm-10">
-                                    <input type="checkbox" name="status" th:checked="${user.status}" checked="checked"/>
+                                    <input type="checkbox" name="active" th:checked="${user.active}" checked="checked"/>
                                 </div>
                             </div>
                             <div class="form-group"><label class="col-sm-2 control-label">描述：</label>
@@ -274,6 +183,19 @@
                                     <textarea class="form-control" placeholder="Write comment..."></textarea>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">角色：</label>
+                                <div class="col-sm-10">
+                                    <select multiple="multiple" th:field="*{roles}" name="roles" class="form-control" th:remove="all-but-first">
+<!--
+                                        <option value="1" th:each="role : ${allRoles}" th:value="${role.name}" th:text="${role.name}">用户</option>
+-->
+                                        <option value="1" th:each="role : ${allRoles}" th:value="${role.id}" th:text="${role.name}">用户</option>
+                                        <option value="2">管理员</option>
+                                    </select>
+                                </div>
+                            </div>
+<!--
                             <div class="form-group" th:remove="${user.isNew()} ? all : none">
                                 <label class="col-sm-2 control-label">创建日期：</label>
                                 <div class="col-sm-10">
@@ -286,13 +208,14 @@
                                     <input type="text" readonly="readonly" class="form-control" th:value="*{updated}"/>
                                 </div>
                             </div>
+-->
                             <div class="form-group">
                                 <div class="col-sm-2"></div>
                                 <div class="col-sm-10"><!--btn btn-w-m btn-primary-->
                                 </div>
                             </div>
                         </fieldset>
-
+</div>
                     </div>
 
 
@@ -310,10 +233,7 @@
         </section>
     </div>
 
-    <footer class="main-footer">
-        <div class="pull-right hidden-xs"><b>版本</b> 1.0.0</div>
-        <strong>版权 &copy; 2014-2017 <a href="https://www.baidu.com" target="_blank">My Boot</a>.</strong>
-    </footer>
+    <footer class="main-footer">footer</footer>
 
 </div>
 
@@ -321,7 +241,6 @@
 <script src="../../static/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../../static/plugins/bootstrap/js/bootstrap.min.js"></script>
-
 
 <!-- SlimScroll -->
 <script src="../../static/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>

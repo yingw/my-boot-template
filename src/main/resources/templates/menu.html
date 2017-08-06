@@ -36,18 +36,19 @@
             <ul class="sidebar-menu" data-widget="tree" th:fragment="menu">
                 <li class="header">导航</li>
 
-                <li class="active">
+                <li th:classappend="${menu=='index' ? 'active' : ''}">
                     <a href="index.html" th:href="@{/}"><i class="fa fa-home"></i> <span>首页</span></a>
                 </li>
 
-                <li class="treeview">
+                <li class="treeview" th:classappend="${menu=='users' ? 'active menu-open' : ''}">
                     <a href="#"><i class="fa fa-user"></i> <span>权限中心</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu"><!--collapse-->
-                        <li class="active"><a href="users/userList.html" th:href="@{/users}"><i class="fa fa-circle"></i> 用户管理</a></li>
+                        <li th:classappend="${menu=='users' ? 'active' : ''}"><a href="users/userList.html" th:href="@{/users}">
+                            <i th:classappend="${menu=='users' ? 'fa-circle' : 'fa-circle-o'}" class="fa"></i> 用户管理</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i> 角色管理</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i> 资源管理</a></li>
                     </ul>
@@ -66,6 +67,10 @@
                         </a></li>
                         <li><a href="#" th:href="@{/docs}" target="_blank">
                             <i class="fa fa-file-text-o"></i> <span>Actuator Docs</span>
+                            <span class="pull-right-container"><i class="fa fa-external-link"></i></span>
+                        </a></li>
+                        <li><a href="#" th:href="@{/swagger-ui.html}" target="_blank">
+                            <i class="fa fa-file-text-o"></i> <span>Swagger Docs</span>
                             <span class="pull-right-container"><i class="fa fa-external-link"></i></span>
                         </a></li>
                         <li><a href="#" th:href="@{/actuator}" target="_blank">

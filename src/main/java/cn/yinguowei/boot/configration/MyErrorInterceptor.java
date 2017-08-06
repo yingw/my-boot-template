@@ -1,4 +1,4 @@
-package cn.yinguowei.boot;
+package cn.yinguowei.boot.configration;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.HandlerInterceptor;

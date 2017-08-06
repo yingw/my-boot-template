@@ -11,7 +11,7 @@
 
     <!--/*@thymesVar id="title" type="java.lang.String"*/-->
     <!--<title th:text="${title}">My Boot</title>-->
-    <title layout:title-pattern="$CONTENT_TITLE"></title>
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">My Boot</title>
 
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="../static/plugins/bootstrap/css/bootstrap.min.css"
@@ -48,8 +48,14 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="../static/css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}"/>
     <!-- AdminLTE Skins. 选择一个skin指定，或者all选择 -->
+    <link rel="stylesheet" href="../static/css/skins/_all-skins.min.css"
+          th:href="@{/css/skins/_all-skins.min.css}"/>
+    <!--
     <link rel="stylesheet" href="../static/css/skins/skin-black-light.min.css"
           th:href="@{/css/skins/skin-black-light.min.css}"/>
+        <link rel="stylesheet" href="../static/css/skins/skin-wilmar.css"
+              th:href="@{/css/skins/skin-wilmar.css}"/>
+    -->
 
     <!-- 项目定制样式 -->
     <link rel="stylesheet" href="../static/css/my.css" th:href="@{/css/my.css}"/>
@@ -67,7 +73,10 @@
     <!--<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
           href="../../css/bootstrap.min.css" />-->
 </head>
-<body class="hold-transition skin-black-light sidebar-mini">
+<!--
+skin-wilmar skin-black-light
+-->
+<body class="hold-transition skin-blue sidebar-mini">
 
 <div class="wrapper">
 
@@ -94,13 +103,22 @@
                     <li><!--样式？-->
                         <span class="navbar-text">欢迎使用 My Boot</span>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown" th:if="${#authorization.expression('isAuthenticated()')}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             孙悟空 <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">个人中心</a></li>
                             <li class="divider"></li>
                             <li><a href="login2.html" th:href="@{/logout}" >注销</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" th:if="${#authorization.expression('!isAuthenticated()')}">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            未登入 <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="login.html" th:href="@{/login}">登入</a></li>
+                            <li class="divider"></li>
+                            <li><a href="register.html" th:href="@{/register}">注册</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -141,7 +159,7 @@
             <ul class="sidebar-menu" data-widget="tree" th:include="menu::menu">
                 <li class="header">导航</li>
 
-                <li class="active">
+                <li th:classappend="${menu=='index' ? 'active' : ''}">
                     <a href="index.html"><i class="fa fa-home"></i> <span>首页</span></a>
                 </li>
 
@@ -225,10 +243,15 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+<!--th:include="footer::copy"-->
+    <!-- 基本不换  th:fragment="footer"-->
+    <!-- 反过来： th:replace="~{index::footer}" -->
+    <footer class="main-footer">
+        <strong>版权</strong>
+        &copy; 2014-<span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2016</span>
+        <a href="https://www.github.com" target="_blank" th:text="${@environment.getProperty('info.app.name')}">My Boot</a>.
 
-    <footer class="main-footer" th:include="footer::copy">
-        <div class="pull-right hidden-xs"><b>版本</b> 1.0.0</div>
-        <strong>版权 &copy; 2014-2017 <a href="https://www.github.com" target="_blank">My Boot</a>.</strong>
+        <div class="pull-right hidden-xs"><b>版本</b> <span th:text="${@environment.getProperty('info.app.version')}">1.0.0</span></div>
     </footer>
 
 </div>

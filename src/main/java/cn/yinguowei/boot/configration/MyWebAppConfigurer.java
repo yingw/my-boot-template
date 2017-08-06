@@ -1,5 +1,6 @@
-package cn.yinguowei.boot;
+package cn.yinguowei.boot.configration;
 
+import cn.yinguowei.boot.configration.MyErrorInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;

@@ -1,40 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout">
+      layout:decorator="layout" th:with="menu='index'">
 
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><!--?-->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
-
-    <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="../static/plugins/bootstrap/css/bootstrap.min.css"
-        th:href="@{/plugins/bootstrap/css/bootstrap.min.css}"/>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="../static/plugins/font-awesome/css/font-awesome.min.css"
-        th:href="@{/plugins/font-awesome/css/font-awesome.min.css}"/>
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="../static/plugins/Ionicons/css/ionicons.min.css"
-        th:href="@{/plugins/Ionicons/css/ionicons.min.css}"/>
-
-    <!-- Theme style -->
-    <link rel="stylesheet" href="../static/css/AdminLTE.min.css"
-          th:href="@{/css/AdminLTE.min.css}"/>
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="../static/css/skins/skin-black-light.min.css"
-            th:href="@{/css/skins/skin-black-light.min.css}"/>
-    <!-- Google Font -->
+    <meta charset="utf-8" th:remove="all"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" th:remove="all"/><!--?-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" th:remove="all"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"
+          th:remove="all"/>
+    <link rel="stylesheet" href="../static/plugins/bootstrap/css/bootstrap.min.css" th:remove="all"/>
+    <link rel="stylesheet" href="../static/plugins/font-awesome/css/font-awesome.min.css" th:remove="all"/>
+    <link rel="stylesheet" href="../static/plugins/Ionicons/css/ionicons.min.css" th:remove="all"/>
+    <link rel="stylesheet" href="../static/css/AdminLTE.min.css" th:remove="all"/>
+    <link rel="stylesheet" href="../static/css/skins/_all-skins.min.css" th:remove="all"/>
     <link rel="stylesheet"
-          href="https://fonts.googleapis.cnpmjs.org/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
-
+          href="https://fonts.googleapis.cnpmjs.org/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"
+          th:remove="all"/>
+    <link rel="stylesheet" href="../static/css/my.css" th:remove="all"/>
     <title>首页</title>
 </head>
 
-<body class="hold-transition skin-black-light sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
 
 <div class="wrapper">
 
@@ -192,10 +179,9 @@
     </div>
     <!-- /.content-wrapper -->
 
-
+    <!-- th:fragment="footer"-->
     <footer class="main-footer">
-        <div class="pull-right hidden-xs"><b>版本</b> 1.0.0</div>
-        <strong>版权 &copy; 2014-2017 <a href="https://www.baidu.com" target="_blank">My Boot</a>.</strong>
+        footer
     </footer>
 
 </div>

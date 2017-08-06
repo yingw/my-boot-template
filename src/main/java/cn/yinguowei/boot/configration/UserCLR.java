@@ -1,7 +1,10 @@
 package cn.yinguowei.boot.configration;
 
-import cn.yinguowei.boot.User;
-import cn.yinguowei.boot.UserRepository;
+import cn.yinguowei.boot.model.User;
+import cn.yinguowei.boot.repository.UserRepository;
+import cn.yinguowei.boot.model.Role;
+import cn.yinguowei.boot.repository.RoleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -9,15 +12,15 @@ import java.util.stream.Stream;
 
 /**
  * Created by yingu on 2017/7/16.
+ * 测试数据
  */
 @Component
 class UserCLR implements CommandLineRunner {
-
+    @Autowired
     UserRepository userRepository;
+    @Autowired
+    RoleRepository roleRepository;
 
-    public UserCLR(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @Override
     public void run(String... strings) throws Exception {
@@ -33,6 +36,18 @@ class UserCLR implements CommandLineRunner {
                 "yinguowei9,殷国伟", "aimee9,夏琴艳", "jon9,阮忠友", "james9,梁健", "will9,Lin Will"
         )
                 .forEach(name -> userRepository.save(new User(name.split(",")[0], name.split(",")[1])));
-        userRepository.findAll().forEach(System.out::println);
+        userRepository.findAll().forEach(u -> {
+            System.out.println(u);
+            u.setPassword("d8d8a6cd1ed4902505882b6c901812b2");
+            userRepository.save(u);
+        });
+
+        /* Role */
+        Stream.of("admin", "user").forEach(name -> roleRepository.save(new Role(name)));
+        roleRepository.findAll().forEach(System.out::println);
+
+        User yinguowei = userRepository.findByUsername("yinguowei");
+        yinguowei.getRoles().add(roleRepository.findByName("admin"));
+        userRepository.save(yinguowei);
     }
 }

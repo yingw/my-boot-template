@@ -116,8 +116,8 @@
                             <td>
                                 <i th:class="${user.active} ? 'fa fa-check-circle text-success' : 'fa fa-times-circle text-danger' "></i>
                             </td>
-                            <td th:text="${user.createdDate}">1999-1-1</td>
-                            <td th:text="${user.lastModifiedDate}">1999-1-1</td>
+                            <td th:text="${#temporals.format(user.createdDate,'yyyy-MM-dd')}">1999-1-1</td>
+                            <td th:text="${#temporals.format(user.lastModifiedDate,'yyyy-MM-dd')}">1999-1-1</td>
                             <td class="text-right">
                                 <a class="btn btn-info btn-xs"
                                    href="userDetails.html" th:href="@{'/users/' + ${user.id}}">

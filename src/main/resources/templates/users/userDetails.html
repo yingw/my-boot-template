@@ -128,11 +128,12 @@
                         </tr>
                         <tr>
                             <th>创建日期：</th>
-                            <td th:text="${user.createdDate}">2019-01-02</td>
+                            <td th:text="${#temporals.format(user.createdDate,'yyyy-MM-dd HH:mm:ss')}">2019-01-02</td>
                         </tr>
                         <tr>
                             <th>更新日期：</th>
-                            <td th:text="${user.lastModifiedDate}">2020-10-23</td>
+                            <!--         ${#temporals.format(#temporals.createNow(), 'yyyy')}-->
+                            <td th:text="${#temporals.format(user.lastModifiedDate,'yyyy-MM-dd HH:mm:ss')}">2020-10-23</td>
                         </tr>
                         <tr>
                             <th>角色1：</th>

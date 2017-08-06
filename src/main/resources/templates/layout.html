@@ -105,7 +105,7 @@ skin-wilmar skin-black-light
                     </li>
                     <li class="dropdown" th:if="${#authorization.expression('isAuthenticated()')}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span th:text="${#authentication.name}">孙悟空</span>
+                            <span th:text="${session.userFullName}">孙悟空</span>
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">个人中心</a></li>
@@ -140,8 +140,8 @@ skin-wilmar skin-black-light
                          th:src="@{/img/yingw-github-avatars-160x160.jpg}" class="img-circle" alt="User Image"/>
                 </div>
                 <div class="pull-left info">
-                    <p>孙悟空</p>
-                    <a href="#"><i class="fa fa-user"></i> 管理员</a>
+                    <p th:text="${session.userFullName}">孙悟空</p>
+                    <a href="#" th:if="${#authorization.expression('hasRole(''ROLE_admin'')')}"><i class="fa fa-user"></i> 管理员</a>
                 </div>
             </div>
             <!-- search form -->

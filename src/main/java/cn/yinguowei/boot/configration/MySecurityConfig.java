@@ -6,11 +6,17 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import java.io.IOException;
 
 /**
  * Created by yingu on 2017/7/12.
@@ -28,11 +34,21 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.authorizeRequests().anyRequest().permitAll();
         http.authorizeRequests().antMatchers("/settings/**").hasRole("admin");
         http.authorizeRequests().anyRequest().authenticated();
-        http.formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll().and().logout().invalidateHttpSession(true).logoutSuccessUrl("/login").permitAll();
+        http.formLogin()
+                .loginPage("/login").defaultSuccessUrl("/").permitAll().successHandler(loginSuccessHandler)
+                .and()
+                .logout().invalidateHttpSession(true).logoutSuccessUrl("/login").permitAll();
         http.csrf().disable();
         http.rememberMe().tokenValiditySeconds(24*3600).tokenRepository(persistentTokenRepository());
         http.headers().frameOptions().disable();
     }
+
+    @Autowired
+    LoginSuccessHandler loginSuccessHandler;
+/*    @Bean
+    public LoginSuccessHandler loginSuccessHandler(){
+        return new LoginSuccessHandler();
+    }*/
 
     @Autowired
     MyUserDetailService userDetailService;
@@ -64,6 +80,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
+    // TODO why double def?
     @Autowired
     DataSource dataSource;
 
@@ -86,4 +103,14 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     public MyUserDetailService myUserDetailService() {
         return new MyUserDetailService();
     }*/
+
+/*@Bean
+    public AuthenticationSuccessHandler authenticationSuccessHandler() {
+    return new AuthenticationSuccessHandler() {
+        @Override
+        public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+            request.getSession().setAttribute("userFullname",authentication.);
+        }
+    }
+}*/
 }

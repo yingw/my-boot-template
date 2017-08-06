@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -50,7 +51,8 @@ public class UserController {
     @GetMapping("/users")
     public String queryUsers(
             @ApiParam(name = "name", value = "用户名称查询条件", required = false)
-            @RequestParam(defaultValue = "") String name, Model model) {
+            @RequestParam(defaultValue = "") String name, Model model, Principal principal) {
+        System.out.println("principal = " + principal.getName());
         // TODO find by name
         List<User> users = userRepository.findByUsernameLikeOrFullnameLike("%" + name + "%", "%" + name + "%");
 //        List<User> users = userRepository.findAll();

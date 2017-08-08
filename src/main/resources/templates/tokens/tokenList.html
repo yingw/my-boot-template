@@ -106,10 +106,10 @@
                             <td th:text="${token.token}">某某</td>
                             <td th:text="${#temporals.format(token.lastUsed,'yyyy-MM-dd HH:mm:ss')}">2010-05-12 12:32:11</td>
                             <td class="text-right">
-                                <form th:action="@{/tokens}" action="#" method="post">
+                                <form th:action="@{'/tokens/'+${token.series}}" action="#" method="post">
                                     <input type="hidden" name="_method" value="delete">
                                     <button class="btn btn-danger btn-xs" onclick="return confirm('确定要删除zhangsan的session吗？')"
-                                            th:onclick="'return confirm(\'确定要删除 ' + ${token.series} + ' 的session吗？\')'">
+                                            th:onclick="'return confirm(\'确定要删除 ' + ${token.username} + ' 的session吗？\')'">
                                         <i class="fa fa-times"></i> 删除
                                     </button>
                                 </form>

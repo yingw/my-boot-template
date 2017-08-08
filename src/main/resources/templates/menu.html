@@ -61,7 +61,7 @@
                 </li>
                 <!-- 系统设置 for admin -->
                 <li class="treeview" th:if="${#authorization.expression('hasRole(''ROLE_admin'')')}" th:classappend="${menu=='settings' ? 'active menu-open' : ''}">
-                    <a href="#"><i class="fa fa-adjust"></i> <span>设置</span>
+                    <a href="#"><i class="fa fa-adjust"></i> <span>系统设置</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -71,9 +71,17 @@
                             <a href="settings/sysSettings.html" th:href="@{/settings/sys}">
                                 <i class="fa fa-wrench"></i><span>系统设置</span>
                             </a></li>
+                        <li th:classappend="${submenu=='tokens' ? 'active' : ''}">
+                            <a href="settings/sysSettings.html" th:href="@{/tokens}">
+                                <i class="fa fa-pie-chart"></i><span>用户Session</span>
+                            </a></li>
                         <li th:classappend="${submenu=='charts' ? 'active' : ''}">
                             <a href="settings/sysSettings.html" th:href="@{/settings/sys}">
-                                <i class="fa fa-pie-chart"></i><span>系统统计</span>
+                                <i class="fa fa-pie-chart"></i><span>登入日志</span>
+                            </a></li>
+                        <li th:classappend="${submenu=='charts' ? 'active' : ''}">
+                            <a href="settings/sysSettings.html" th:href="@{/settings/sys}">
+                                <i class="fa fa-pie-chart"></i><span>统计</span>
                             </a></li>
                     </ul>
                 </li>

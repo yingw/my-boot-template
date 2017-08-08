@@ -29,6 +29,7 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
         User userDetails = (User) authentication.getPrincipal();
         request.getSession().setAttribute("userFullName", userRepository.findByUsername(userDetails.getUsername()).getFullname());
 
+        System.out.println("request = " + request.getSession().getAttribute("userFullName"));
        /* Set<SysRole> roles = userDetails.getSysRoles();*/
         //输出登录提示信息
         System.out.println("管理员 " + userDetails.getUsername() + " 登录");
@@ -36,6 +37,7 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
         System.out.println("IP :" + getIpAddress(request));
 
         super.onAuthenticationSuccess(request, response, authentication);
+        System.out.println("request = " + request.getSession().getAttribute("userFullName"));
     }
 
     public String getIpAddress(HttpServletRequest request) {

@@ -105,7 +105,7 @@ skin-wilmar skin-black-light
                     </li>
                     <li class="dropdown" th:if="${#authorization.expression('isAuthenticated()')}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span th:text="${session.userFullName}">孙悟空</span>
+                            <span th:text="${session.userFullName}">孙悟空</span><!--session.userFullName or #authentication.name-->
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">个人中心</a></li>

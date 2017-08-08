@@ -6,17 +6,11 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-import java.io.IOException;
 
 /**
  * Created by yingu on 2017/7/12.
@@ -28,9 +22,10 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 //        super.configure(http);
         System.out.println("MySecurityConfig.configure");
-        http.authorizeRequests().antMatchers("/", "/login", "/register").permitAll();
+        http.authorizeRequests().antMatchers("/login", "/register").permitAll();
         http.authorizeRequests().antMatchers("/h2-console/**", "/docs/**", "/actuator/**", "/management/**", "/admin/**", "/druid/**").permitAll();
         http.authorizeRequests().antMatchers("/css/**", "/img/**", "/js/**", "/plugins/**", "/static/**").permitAll();
+        http.authorizeRequests().antMatchers("/**").authenticated();
 //        http.authorizeRequests().anyRequest().permitAll();
         http.authorizeRequests().antMatchers("/settings/**").hasRole("admin");
         http.authorizeRequests().anyRequest().authenticated();
@@ -39,7 +34,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().invalidateHttpSession(true).logoutSuccessUrl("/login").permitAll();
         http.csrf().disable();
-        http.rememberMe().tokenValiditySeconds(24*3600).tokenRepository(persistentTokenRepository());
+        http.rememberMe().tokenValiditySeconds(24 * 3600).tokenRepository(persistentTokenRepository());
         http.headers().frameOptions().disable();
     }
 
@@ -84,15 +79,15 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
 
-/*    @Bean
-    public DataSource getDataSource() {
-        BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
-        dataSource.setUrl(env.getProperty("jdbc.url"));
-        dataSource.setUsername(env.getProperty("jdbc.username"));
-        dataSource.setPassword(env.getProperty("jdbc.password"));
-        return dataSource;
-    }*/
+    /*    @Bean
+        public DataSource getDataSource() {
+            BasicDataSource dataSource = new BasicDataSource();
+            dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
+            dataSource.setUrl(env.getProperty("jdbc.url"));
+            dataSource.setUsername(env.getProperty("jdbc.username"));
+            dataSource.setPassword(env.getProperty("jdbc.password"));
+            return dataSource;
+        }*/
     @Bean
     public PersistentTokenRepository persistentTokenRepository() {
         JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();

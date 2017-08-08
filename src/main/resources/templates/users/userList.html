@@ -18,6 +18,10 @@
           href="https://fonts.googleapis.cnpmjs.org/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"
           th:remove="all"/>
     <link rel="stylesheet" href="../../static/css/my.css" th:remove="all"/>
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../../static/plugins/datatables.net-bs/css/dataTables.bootstrap.min.css"
+          th:href="@{/plugins/datatables.net-bs/css/dataTables.bootstrap.min.css}"/>
+
     <title>用户管理</title>
 </head>
 
@@ -27,12 +31,11 @@
 
     <header class="main-header">
 
-        <a href="/" class="logo">Logo</a>
+        <a href="/" class="logo"></a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
             <!-- Sidebar toggle button-->
             <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"><i class="fa fa-fw fa-balance-scale"></i></span>
             </a>
         </nav>
@@ -41,27 +44,6 @@
 
     <!-- 左侧栏，Left side column. contains the sidebar -->
     <aside class="main-sidebar">
-
-        <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">导航</li>
-
-            <li class="active">
-                <a href="../index.html"><i class="fa fa-home"></i> <span>首页</span></a>
-            </li>
-
-            <li class="treeview active menu-open">
-                <a href="#"><i class="fa fa-user"></i> <span>权限中心</span>
-                    <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="active"><a href="userList.html"><i class="fa fa-circle"></i> 用户管理</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> 角色管理</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> 资源管理</a></li>
-                </ul>
-            </li>
-        </ul>
     </aside>
 
 
@@ -87,8 +69,8 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">用户查询</h3>
                     <div class="box-tools pull-right">
-                        <a href="userForm.html" th:href="@{/users/new}" class="btn btn-success btn-sm"><i
-                                class="fa fa-plus"></i> 新增用户</a>
+                        <a href="userForm.html" th:href="@{/users/new}" class="btn btn-success btn-sm">
+                            <i class="fa fa-plus"></i> 新增用户</a>
                     </div>
                 </div>
 
